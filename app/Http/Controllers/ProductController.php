@@ -11,7 +11,33 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = array(
+
+            [
+                'id' => 'boat',
+                'name' => 'Boat',
+                'price' => 2000000,
+                'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, dolore ipsam placeat quia recusandae modi corrupti fuga commodi et vero sit voluptatum similique eum nisi aspernatur officia provident! Laborum, in!',
+                'image' => 'https://fastly.picsum.photos/id/469/200/200.jpg?hmac=r_nEPJ5ExnhVEQSrNc19WUPConxJzBC929FJHl_Y5N4'
+            ],
+            [
+                'id' => 'tea',
+                'name' => 'Tea',
+                'price' => 5000,
+                'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, dolore ipsam placeat quia recusandae modi corrupti fuga commodi et vero sit voluptatum similique eum nisi aspernatur officia provident! Laborum, in!',
+                'image' => 'https://fastly.picsum.photos/id/365/200/200.jpg?hmac=1d3GDxGN6ctXX3y8q4PA_hKu6fLOCEGbgeKZKJ8K8U8'
+            ],
+            [
+                'id' => 'train',
+                'name' => 'Train',
+                'price' => 500000000,
+                'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, dolore ipsam placeat quia recusandae modi corrupti fuga commodi et vero sit voluptatum similique eum nisi aspernatur officia provident! Laborum, in!',
+                'image' => 'https://fastly.picsum.photos/id/419/200/200.jpg?hmac=yUYGIG3hJhzafcgOl8Drs4iTsia3HynizHXh8nTcvEQ'
+            ]
+        );
+        return view('products.index',[
+            'data' => $products
+        ]);
     }
 
     /**
