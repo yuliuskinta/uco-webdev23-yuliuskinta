@@ -9,5 +9,7 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
     Route::get('/show/{id}', 'show');
     Route::get('/create',  'create');
     Route::get('/edit', 'edit');
-});
+    Route::get('/form', 'form');
 
+});
+Route::resource('products', ProductController::class,);
