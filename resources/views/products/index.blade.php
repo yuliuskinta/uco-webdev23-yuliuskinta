@@ -1,12 +1,15 @@
-<x-template title="Product List">
-    <a class="btn btn-primary" href="/products/create" role="button">Add New Product</a>
-    <div class="row">
-        @foreach ($data as $item)
-            <div class="col-3">
-                <x-product-card name="{{ $item['name'] }}" price="{{ $item['price'] }}"
-                    image="{{ $item['image'] }}"></x-product-card>
+<x-template title="Daftar produk">
+    <div class="container py-3">
+        <div class="row">
+            @foreach($products as $product)
+            <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <x-product-display :name="$product->name" :price="$product->price" :id="$product->id" :image="$product->image"></x-product-display>
             </div>
-        @endforeach
-
+            @endforeach
+        </div>
     </div>
+
+    <a href="{{ route('products.create') }}" class="btn btn-lg btn-success position-fixed bottom-0 end-0 m-3" title="Add new product" data-bs-toggle="tooltip">
+        <i class="fa-solid fa-plus"></i>
+    </a>
 </x-template>

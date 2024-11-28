@@ -1,0 +1,13 @@
+.product-card {
+    text-decoration:none;
+}
+
+.product-card > .card {
+    transition: all .3s;
+}
+
+.product-card:hover > .card {
+    transform:scale(1.05);
+    border:0;
+    box-shadow: 0px 0px 1em rgba(0,0,0,0.2);
+}
