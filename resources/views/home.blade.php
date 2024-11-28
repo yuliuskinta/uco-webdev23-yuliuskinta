@@ -16,17 +16,17 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img alt="" class="d-block w-100"
-                        height="500"
+                        height="600"
                         src="https://storage.googleapis.com/a1aa/image/vLGHzD8frM0nBqBD0aswnbnvuajesLJF9vCADsWZKWuZpdzTA.jpg"
                         width="1200" />
                 </div>
                 <div class="carousel-item">
-                    <img alt="" class="d-block w-100" height="500"
+                    <img alt="" class="d-block w-100" height="600"
                         src="https://storage.googleapis.com/a1aa/image/8o7QOED21tLDORSqngnW9vaisVtXQeIAo1fZV9D0eUmel2NPB.jpg"
                         width="1200" />
                 </div>
                 <div class="carousel-item">
-                    <img alt="" class="d-block w-100" height="500"
+                    <img alt="" class="d-block w-100" height="600"
                         src="https://storage.googleapis.com/a1aa/image/ucGvVCTWaxaGOF1XKwz3kqCrv2vfntpLc58PMUUmIVJu0u5JA.jpg"
                         width="1200" />
                 </div>
