@@ -1,4 +1,4 @@
-<x-template title="Add new product">
+<x-template :title="$title">
     <div class="container py-3">
         <h1>{{ $title }}</h1>
         <form class="was-validated" method="post" action="{{ isset($product->id) ? route('products.update', ['id' => $product->id]) : route('products.store') }}">
@@ -6,18 +6,28 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" name="name" id="name" value="{{ $product->name ?? '' }}" required>
-              </div>
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" name="description" id="description">{{ $product->description ?? '' }}</textarea>
-              </div>
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Category</label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option value="" disabled selected>Select category</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}" @if(isset($product) && $product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" name="price" id="price" value="{{ $product->price ?? 0 }}" min="1" required>
-              </div>
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
+                <a href="{{ route('products.list') }}" class="btn btn-secondary">Back</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+            </div>
         </form>
     </div>
 </x-template>

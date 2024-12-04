@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::get();
+        $products = Product::select();
+
+        if ($request->category) {
+            $products->where('category_id', $request->category);
+        }
+
+        $products = $products->get();
 
         return view('products.index', [
             'products' => $products
@@ -24,8 +31,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $categories = Category::getOrdered();
         return view('products.form', [
-            'title' => 'Add new product'
+            'title' => 'Add new product',
+            'categories' => $categories
         ]);
     }
 
@@ -38,7 +47,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => 'storage/products/default.jpg'
+            'image' => 'storage/products/default.jpg',
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->route('products.show', ['id' => $product->id]);
@@ -61,9 +71,11 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::where('id', $id)->firstOrFail();
+        $categories = Category::getOrdered();
         return view('products.form', [
             'title' => 'Edit product',
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories
         ]);
     }
 
@@ -76,6 +88,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->category_id = $request->category_id;
         $product->save();
 
         return redirect()->route('products.show', ['id' => $product->id]);

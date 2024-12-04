@@ -5,6 +5,7 @@
         </div>
         <div class="col-lg-4 ">
             <div class="container px-lg-5 py-5">
+                <div class="text-muted mb-5 fst-italic">{{ $product->category->name }}</div>
                 <h1 class="mb-4">{{ $product->name }}</h1>
                 <div class="fw-semibold text-danger mb-4">
                     Rp {{ number_format($product->price, 2, ',', '.') }}

@@ -44,24 +44,12 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">All products</a>
                 </li>
+
+                @foreach(\App\Models\Category::getOrdered() as $category)
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Shoes</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('products.list', ['category' => $category->id]) }}">{{ $category->name }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Shirts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Shorts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Jackets</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Hoodies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('products.list') }}">Accesories</a>
-                </li>
+                @endforeach
             </ul>
         </div>
     </nav>

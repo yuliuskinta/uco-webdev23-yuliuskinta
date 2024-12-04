@@ -3,7 +3,7 @@
         <div class="row">
             @foreach($products as $product)
             <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <x-product-display :name="$product->name" :price="$product->price" :id="$product->id" :image="$product->image"></x-product-display>
+                <x-product-display :product="$product"></x-product-display>
             </div>
             @endforeach
         </div>
