@@ -14,6 +14,7 @@ Route::prefix('/products')->controller(ProductController::class)->group(function
 	Route::post('/update/{id}', 'update')->name('products.update');
 	Route::post('/destroy/{id}', 'destroy')->name('products.destroy');
 	Route::get('/show/{id}', 'show')->name('products.show');
+    Route::get('/search', 'search')->name('products.search');
 });
 
 Route::prefix('/categories')->controller(CategoryController::class)->group(function() {

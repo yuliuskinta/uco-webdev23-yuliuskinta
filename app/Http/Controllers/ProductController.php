@@ -39,6 +39,23 @@ class ProductController extends Controller
     }
 
     /**
+     * Searching
+     */
+    public function search(Request $request)
+    {
+        if($request->has('search')){
+            $products = Product::where('name','LIKE','%'.$request->search.'%')->get();
+        }
+        else {
+            $products = Product::all();
+        }
+
+        return view('products.index', [
+            'products' => $products
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

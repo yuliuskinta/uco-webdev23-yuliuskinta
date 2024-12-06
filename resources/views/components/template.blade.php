@@ -20,8 +20,8 @@
             </a>
 
             <div class="d-flex gap-2 py-2">
-                <form class="input-group" role="search">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <form action="/products/search" class="input-type" method="GET" role="search">
+                    <input class="form-control" type="search" name="search" placeholder="search" aria-label="search">
                     <button class="btn btn-light border" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
 
