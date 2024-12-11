@@ -63,6 +63,7 @@
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Cari produk..." value="{{ request('search') }}">
                 <select class="form-select" id="sel1" name="sort">
+                    <option value="highest">    </option>
                     <option value="highest">Harga Tertinggi</option>
                     <option value="lowest">Harga Terendah</option>
                     <option value="name_asc">Nama A-Z</option>
