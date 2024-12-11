@@ -63,12 +63,13 @@
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Cari produk..." value="{{ request('search') }}">
                 <select class="form-select" id="sel1" name="sort">
-                    <option value="highest">    </option>
                     <option value="highest">Harga Tertinggi</option>
                     <option value="lowest">Harga Terendah</option>
                     <option value="name_asc">Nama A-Z</option>
                     <option value="name_desc">Nama Z-A</option>
                 </select>
+                <input type="number" name="min_price" class="form-control" placeholder="Min Harga" value="{{ request('min_price') }}">
+                <input type="number" name="max_price" class="form-control" placeholder="Max Harga" value="{{ request('max_price') }}">
                 <button class="btn btn-primary" type="submit">Cari</button>
             </div>
         </form>

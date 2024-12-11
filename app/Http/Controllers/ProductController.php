@@ -50,6 +50,15 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
+        // Cek rentang harga
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
         // Cek apakah ada pilihan untuk mengurutkan
         if ($request->input('sort') === 'highest') {
             $query->orderBy('price', 'desc'); // Mengurutkan harga tertinggi
