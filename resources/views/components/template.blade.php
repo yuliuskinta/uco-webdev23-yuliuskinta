@@ -65,6 +65,8 @@
                 <select class="form-select" id="sel1" name="sort">
                     <option value="highest">Harga Tertinggi</option>
                     <option value="lowest">Harga Terendah</option>
+                    <option value="name_asc">Nama A-Z</option>
+                    <option value="name_desc">Nama Z-A</option>
                 </select>
                 <button class="btn btn-primary" type="submit">Cari</button>
             </div>

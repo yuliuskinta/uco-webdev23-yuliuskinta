@@ -50,17 +50,22 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        // Cek apakah ada pilihan untuk mengurutkan harga
+        // Cek apakah ada pilihan untuk mengurutkan
         if ($request->input('sort') === 'highest') {
             $query->orderBy('price', 'desc'); // Mengurutkan harga tertinggi
         } elseif ($request->input('sort') === 'lowest') {
             $query->orderBy('price', 'asc'); // Mengurutkan harga terendah
+        } elseif ($request->input('sort') === 'name_asc') {
+            $query->orderBy('name', 'asc'); // Mengurutkan nama A-Z
+        } elseif ($request->input('sort') === 'name_desc') {
+            $query->orderBy('name', 'desc'); // Mengurutkan nama Z-A
         }
 
         $products = $query->get();
 
         return view('products.index', compact('products'));
     }
+
 
 
 
