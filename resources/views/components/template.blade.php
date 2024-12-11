@@ -38,7 +38,7 @@
             </div>
         </div>
 
-
+        <p>Toko Online Kinta</p>
         <div class="collapse navbar-collapse justify-content-center bg-light" id="navbarCategories">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center overflow-x-auto">
                 <li class="nav-item">
@@ -60,5 +60,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/script.js') }}"></script>
+
+
 </body>
 </html>
