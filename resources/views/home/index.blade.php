@@ -58,9 +58,6 @@
         </div>
     </div>
 
-
-
-
     <footer class="bg-light text-center py-4">
         <div class="container">
             <p>&copy; 2024 Toko Online. Semua hak dilindungi.</p>
