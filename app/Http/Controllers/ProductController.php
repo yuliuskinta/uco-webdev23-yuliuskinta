@@ -43,17 +43,27 @@ class ProductController extends Controller
      */
     public function search(Request $request)
     {
-        if($request->has('search')){
-            $products = Product::where('name','LIKE','%'.$request->search.'%')->get();
-        }
-        else {
-            $products = Product::all();
+        $query = Product::query();
+
+        // Cek apakah ada input pencarian
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        return view('products.index', [
-            'products' => $products
-        ]);
+        // Cek apakah ada pilihan untuk mengurutkan harga
+        if ($request->input('sort') === 'highest') {
+            $query->orderBy('price', 'desc'); // Mengurutkan harga tertinggi
+        } elseif ($request->input('sort') === 'lowest') {
+            $query->orderBy('price', 'asc'); // Mengurutkan harga terendah
+        }
+
+        $products = $query->get();
+
+        return view('products.index', compact('products'));
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -121,4 +131,5 @@ class ProductController extends Controller
 
         return redirect()->route('products.list');
     }
+
 }

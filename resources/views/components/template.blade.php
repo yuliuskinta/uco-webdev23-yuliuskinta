@@ -52,6 +52,25 @@
                 @endforeach
             </ul>
         </div>
+    <div>
+        <p>
+
+        </p>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-center">
+        <form method="GET" action="{{ route('products.search') }}" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Cari produk..." value="{{ request('search') }}">
+                <select class="form-select" id="sel1" name="sort">
+                    <option value="highest">Harga Tertinggi</option>
+                    <option value="lowest">Harga Terendah</option>
+                </select>
+                <button class="btn btn-primary" type="submit">Cari</button>
+            </div>
+        </form>
+    </div>
+
     </nav>
     {{ $slot }}
 
