@@ -5,11 +5,21 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="name" value="{{ $category->name ?? '' }}" required>
+                <input type="text" class="form-control" name="name" id="name" value="{{ $category->name ?? old('name') ?? '' }}" required>
+                @if($errors->has('name'))
+                    <div class="text-danger">
+                        {{ $errors->first('name') }}
+                    </div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="order_no" class="form-label">Order no</label>
-                <input type="number" class="form-control" name="order_no" id="order_no" value="{{ $category->order_no ?? '' }}" required>
+                <input type="number" class="form-control" name="order_no" id="order_no" value="{{ $category->order_no ?? old('order_no') ?? '' }}" required>
+                @if($errors->has('order_no'))
+                    <div class="text-danger">
+                        {{ $errors->first('order_no') }}
+                    </div>
+                @endif
             </div>
             <div class="mb-3">
                 <a href="{{ route('categories.list') }}" class="btn btn-secondary">Back</a>

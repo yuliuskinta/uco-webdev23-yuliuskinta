@@ -1,4 +1,11 @@
 <x-template :title="$product->name">
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show rounded-0 mb-0" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div class="d-lg-flex">
         <div class="col-lg-8 bg-light border-lg-end">
             <img class="w-100" src="{{ asset($product->image) }}">

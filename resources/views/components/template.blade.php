@@ -20,11 +20,10 @@
             </a>
 
             <div class="d-flex gap-2 py-2">
-                <form action="/products/search" class="input-type" method="GET" role="search">
-                    <input class="form-control" type="search" name="search" placeholder="search" aria-label="search">
+                <form class="input-group" role="search" action="{{ route('products.list') }}">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-light border" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
-
 
                 <button class="btn btn-white border navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCategories" aria-controls="navbarCategories" aria-expanded="false"
@@ -32,13 +31,35 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
 
-                <a href="" class="btn btn-white border">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                @auth
+                    <a href="{{ route('cart.list') }}" class="btn btn-white border">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->user()->name }}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Purchase history</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">Log out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-primary text-nowrap">Login</a>
+                @endauth
+
             </div>
         </div>
 
-        <p>Toko Online Kinta</p>
+
         <div class="collapse navbar-collapse justify-content-center bg-light" id="navbarCategories">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center overflow-x-auto">
                 <li class="nav-item">
@@ -52,38 +73,12 @@
                 @endforeach
             </ul>
         </div>
-    <div>
-        <p>
-
-        </p>
-    </div>
-
-    <div class="collapse navbar-collapse justify-content-center">
-        <form method="GET" action="{{ route('products.search') }}" class="mb-4">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Cari produk..." value="{{ request('search') }}">
-                <select class="form-select" id="sel1" name="sort">
-                    <option value="highest">Harga Tertinggi</option>
-                    <option value="lowest">Harga Terendah</option>
-                    <option value="name_asc">Nama A-Z</option>
-                    <option value="name_desc">Nama Z-A</option>
-                </select>
-                <input type="number" name="min_price" class="form-control" placeholder="Min Harga" value="{{ request('min_price') }}">
-                <input type="number" name="max_price" class="form-control" placeholder="Max Harga" value="{{ request('max_price') }}">
-                <button class="btn btn-primary" type="submit">Cari</button>
-            </div>
-        </form>
-    </div>
-
     </nav>
     {{ $slot }}
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/script.js') }}"></script>
-
-
 </body>
 </html>
