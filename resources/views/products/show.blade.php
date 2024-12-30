@@ -23,7 +23,7 @@
                         <input type="number" value="1" class="form-control" placeholder="Qty">
                     </div>
                     <button type="button" class="mb-3 btn btn-success w-100">
-                        Add to cart
+                        Masukkan Keranjang Belanja
                     </button>
                 </form>
                 <p>

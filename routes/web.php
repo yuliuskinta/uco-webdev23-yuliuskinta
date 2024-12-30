@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::prefix('/cart')->controller(CartController::class)->middleware('auth')->group(function() {
+    Route::get('/', 'index')->name('cart.list');
+    Route::post('/add/{productId}', 'add')->name('cart.add');
+    Route::post('/update/{id}', 'update')->name('cart.update');
+    Route::post('/remove/{id}', 'remove')->name('cart.remove');
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('cart.checkout');
+});
+
+Route::prefix('/orders')->controller(OrderController::class)->middleware('auth')->group(function() {
+    Route::get('/', 'index')->name('orders.index');
+});
+
 Route::prefix('/products')->controller(ProductController::class)->group(function() {
 	Route::get('/', 'index')->name('products.list');
 	Route::get('/create', 'create')->name('products.create');
