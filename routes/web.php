@@ -16,11 +16,7 @@ Route::prefix('/cart')->controller(CartController::class)->middleware('auth')->g
     Route::post('/add/{productId}', 'add')->name('cart.add');
     Route::post('/update/{id}', 'update')->name('cart.update');
     Route::post('/remove/{id}', 'remove')->name('cart.remove');
-    Route::post('/checkout', [OrderController::class, 'checkout'])->name('cart.checkout');
-});
-
-Route::prefix('/orders')->controller(OrderController::class)->middleware('auth')->group(function() {
-    Route::get('/', 'index')->name('orders.index');
+    Route::post('/checkout', 'checkout')->name('cart.checkout');
 });
 
 Route::prefix('/products')->controller(ProductController::class)->group(function() {

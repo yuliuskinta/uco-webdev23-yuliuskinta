@@ -1,28 +1,33 @@
-@extends('layouts.app')
+<x-template title="Checkout">
+    <div class="container py-3">
+        <h1>Checkout</h1>
 
-@section('content')
-<div class="container">
-    <h1>Checkout</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <form action="{{ route('cart.checkout') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="shipping_address">Shipping Address</label>
-            <input type="text" class="form-control" id="shipping_address" name="shipping_address" required>
-        </div>
-        <div class="form-group">
-            <label for="payment_method">Payment Method</label>
-            <select class="form-control" id="payment_method" name="payment_method" required>
-                <option value="credit_card">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="bank_transfer">Bank Transfer</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="total_amount">Total Amount</label>
-            <input type="text" class="form-control" id="total_amount" name="total_amount" value="{{ $subtotal }}" readonly>
-        </div>
-        <button type="submit" class="btn btn-success">Place Order</button>
-    </form>
-</div>
-@endsection
+        <form method="POST" action="{{ route('cart.checkout') }}">
+            @csrf
+            <div class="mb-3">
+                <label for="address" class="form-label">Shipping Address</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <h5>Payment Method</h5>
+            <div class="mb-3">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="payment_method" value="bank_transfer" checked>
+                    Bank Mandiri (Account Number: 22222)
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success">Complete Checkout</button>
+        </form>
+    </div>
+</x-template>
