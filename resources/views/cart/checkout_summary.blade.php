@@ -10,7 +10,6 @@
         <p>Payment Method: Bank Mandiri</p>
         <p>Account Number: 22222</p>
 
-        <h5>Total Amount</h5>
-        <p>Total: Rp {{ number_format($subtotal, 2, ',', '.') }}</p>
+
     </div>
 </x-template>
