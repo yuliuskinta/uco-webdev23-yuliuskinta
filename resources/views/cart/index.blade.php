@@ -39,9 +39,17 @@
 
             <h3>Subtotal: Rp {{ number_format($subtotal, 2, ',', '.') }}</h3>
 
-            <form action="{{ route('cart.checkout') }}" method="POST">
+            <form action="{{ route('checkout.process') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-success">Checkout</button>
+                 <label for="name">Name:</label>
+                 <input type="text" name="name" id="name" required>
+
+                 <label for="address">Address:</label>
+                 <input type="text" name="address" id="address" required>
+
+                 <input type="hidden" name="payment_method" value="Bank Mandiri"> <!-- Hidden input for payment method -->
+
+                 <button type="submit" class="btn btn-success">Checkout</button>
             </form>
         @endif
     </div>

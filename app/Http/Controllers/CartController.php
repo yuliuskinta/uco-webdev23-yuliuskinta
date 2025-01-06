@@ -46,23 +46,30 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $request->validate([
+            'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'payment_method' => 'required|string',
         ]);
 
         // Here you would typically process the order and save it to the database
         // For now, we will just clear the cart and return a success message
 
-        Cart::where('user_id', Auth::id())->delete(); // Clear the cart
-
-        $totalAmount = Cart::where('user_id', Auth::id())->sum(function ($item) {
-            return $item->product->price * $item->quantity;
+        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->product ? $item->product->price * $item->quantity : 0;
         });
 
-        $buyerName = Auth::user()->name; // Assuming the user's name is stored in the 'name' field
+        // Clear the cart after calculating subtotal
+        Cart::where('user_id', Auth::id())->delete(); // Clear the cart
+
+        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->product ? $item->product->price * $item->quantity : 0;
+        });
+
+        $buyerName = $request->input('name'); // Get the buyer's name from the request
         $address = $request->input('address');
         $paymentMethod = $request->input('payment_method');
 
-        return view('cart.checkout_summary', compact('totalAmount', 'buyerName', 'address', 'paymentMethod'));
+        return view('cart.checkout_summary', compact('subtotal', 'buyerName', 'address', 'paymentMethod'));
     }
 }

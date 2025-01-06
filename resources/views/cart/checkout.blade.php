@@ -1,33 +1,19 @@
-<x-template title="Checkout">
-    <div class="container py-3">
-        <h1>Checkout</h1>
+@extends('layouts.app')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('cart.checkout') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="address" class="form-label">Shipping Address</label>
-                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-            </div>
-
-            <h5>Payment Method</h5>
-            <div class="mb-3">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="payment_method" value="bank_transfer" checked>
-                    Bank Mandiri (Account Number: 22222)
-                </label>
-            </div>
-
-            <button type="submit" class="btn btn-success">Complete Checkout</button>
-        </form>
-    </div>
-</x-template>
+@section('content')
+<div class="container">
+    <h2>Checkout</h2>
+    <form action="{{ route('checkout.summary') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="name">Nama:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Alamat Pengiriman:</label>
+            <textarea class="form-control" id="address" name="address" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Lanjutkan ke Ringkasan Pembelian</button>
+    </form>
+</div>
+@endsection

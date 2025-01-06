@@ -16,14 +16,15 @@ Route::prefix('/cart')->controller(CartController::class)->middleware('auth')->g
     Route::post('/add/{productId}', 'add')->name('cart.add');
     Route::post('/update/{id}', 'update')->name('cart.update');
     Route::post('/remove/{id}', 'remove')->name('cart.remove');
-    Route::post('/checkout', 'checkout')->name('cart.checkout');
+    Route::get('/checkout', 'showCheckoutForm')->name('checkout.form'); // New route for checkout form
+    Route::post('/checkout/summary', 'showCheckoutSummary')->name('checkout.summary'); // New route for summary
+    Route::post('/checkout', 'checkout')->name('checkout.process'); // New route for processing checkout
 });
 
 Route::prefix('/products')->controller(ProductController::class)->group(function() {
 	Route::get('/', 'index')->name('products.list');
 	Route::get('/create', 'create')->name('products.create');
 	Route::post('/store', 'store')->name('products.store');
-    // Route::middleware(EnsureProductIdValid::class)->group(function() {
     Route::middleware('productValid')->group(function() {
         Route::get('/edit/{id}', 'edit')->name('products.edit')->middleware('can:is-admin');
         Route::post('/update/{id}', 'update')->name('products.update')->middleware('can:is-admin');
@@ -52,7 +53,3 @@ Route::prefix('/login')->controller(LoginController::class)->middleware('guest')
 });
 
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
-
-Route::prefix('/cart')->controller(CartController::class)->middleware('auth')->group(function() {
-    Route::get('/', 'index')->name('cart.list');
-});
