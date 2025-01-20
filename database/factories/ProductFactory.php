@@ -26,10 +26,15 @@ class ProductFactory extends Factory
         // Download gambar dari https://placehold.co dengan warna background random, warna font putih, dan bertuliskan nama produk
         $image_color = str_replace('#', '', fake()->hexColor());
         $file_image = file_get_contents(url()->query("https://placehold.co/400x400/$image_color/white/png", ['text' => $name]));
+        if ($file_image === false) {
+            \Log::error("Failed to download image for product: $name");
+        }
 
         // Simpan ke folder public/storage/products dengan nama random dari uniqid
         $file_path = "storage/products/".uniqid().".png";
-        file_put_contents("public/". $file_path, $file_image);
+        if (file_put_contents("public/". $file_path, $file_image) === false) {
+            \Log::error("Failed to save image to path: public/$file_path");
+        }
 
         return [
             'name' => $name,

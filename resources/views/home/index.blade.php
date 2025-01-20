@@ -31,10 +31,16 @@
     </div>
     <div class="p-5 d-flex justify-content-between">
         <div>
-            <a href="" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">About</a>
-            <a href="" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Privacy Policy</a>
-            <a href="" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Terms and Conditions</a>
-            <a href="" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Contact Us</a>
+            <a href="{{ route('about') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">About</a>
+            <a href="{{ route('tatacarapembelian') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Tata Cara Pembelian</a>
+            <a href="{{ route('testimoni') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Testimoni Pembeli</a>
+            <a href="{{ route('panduan') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Panduan Pembelian Barang</a>
+            <a href="{{ route('pengiriman') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Pengiriman</a>
+            <a href="{{ route('using') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Cara Menggunakan Situs Kami</a>
+            <a href="{{ route('termsandcondition') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Terms and Conditions</a>
+            <a href="{{ route('promo') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Promo dan Voucher</a>
+            <a href="{{ route('promotahunbaru') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Promosi Khusus</a>
+            <a href="{{ route('return') }}" class="link-body-emphasis link-offset-3 link-underline-opacity-25 me-2">Retur dan Pengembalian Dana</a>
         </div>
         <div>
             &copy 2024
